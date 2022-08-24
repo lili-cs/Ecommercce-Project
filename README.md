@@ -1,14 +1,14 @@
 # Ecommercce-Project
 An e-commerce website demo
 
-##Technologies
-###Backend
+## Technologies
+### Backend
 Node.js Express Server. The server is organized based on the MVC architecture.
 
-###Frontend
+### Frontend
 HTML/CSS/JS, template engine
 
-###Database
+### Database
 MongoDB
 
 
