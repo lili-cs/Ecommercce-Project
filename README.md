@@ -1,4 +1,4 @@
-# Ecommercce-Project
+# Ecommerce-Project
 This is an e-commerce website demo. Users can browser the main page, which displays a gallery of products. They can select a particular brand, which will display the list of products sold by that brand. If they click on a product, it navigates them to a page showing more details about that product. If they want purchase products, they can add them to cart. They are able to access their cart page and checkout, which will display an order summary page. There's an admin account that will be in charge of moderating these order requests.
 
 ## Technologies
