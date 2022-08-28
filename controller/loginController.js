@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 const User = require('../model/User');
 require('dotenv').config();
 
+router.get('/login', async function(req, res) {
+  res.render('login');
+});
 
 router.post('/login', async function(req, res) {
   try{
@@ -28,10 +31,14 @@ router.post('/login', async function(req, res) {
       }))
     }
     else{
+      const signed_jwt = jwt.sign(req.body, process.env.JWT_SECRET_KEY);
+      res.setHeader('JWT', signed_jwt);
+
       console.log('login successfully');
+
       return res.status(200).send(JSON.stringify({
         message: 'login successfully',
-        // redirect: '/login'
+        redirect: '/products'
       }));
     }
   }

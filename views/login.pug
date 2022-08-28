@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Login
+  hr
+  
+  input(id='userName' type='text', placeholder='Enter userName')
+  input(id='password' type='text', placeholder='Enter Password')
+  button(type='button' onclick=`login()`) Click to Log In
+
+
+
+  script(src='../javascripts/login.js')

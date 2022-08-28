@@ -3,6 +3,12 @@ var router = express.Router();
 require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const  User  = require('../model/User');
+const Cart = require('../model/Cart');
+const Order = require('../model/Order');
+
+router.get('/signup', async function(req, res) {
+    res.render('signup');
+});
 
 router.post('/signup', async function(req, res) {
     const {userName, password, email} = req.body;
@@ -12,13 +18,22 @@ router.post('/signup', async function(req, res) {
             userName: userName,
             password: hashedPassword,
             email: email,
-            cart: null,
-            orders: []
+            // cart: null,
+            // orders: []
         }
     );
 
     try{
         const result = await newUser.save();
+        const newUserId = result._id;
+
+        const newCart = new Cart({
+            user: newUserId,
+            products: []
+        });
+
+        await newCart.save();
+
         console.log('sign up successfully')
         res.status(200).send(JSON.stringify({
             message: 'sign up successfully',

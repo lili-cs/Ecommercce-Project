@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 Sign Up
+  hr
+  
+  input(id='userName' type='text', placeholder='Enter userName')
+  input(id='email' type='text', placeholder='Enter Email')
+  input(id='password' type='text', placeholder='Enter Password')
+  button(type='button' onclick=`signup()`) Click to Sign Up
+
+
+
+  script(src='../javascripts/signup.js')

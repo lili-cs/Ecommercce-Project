@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -10,15 +11,15 @@ const userSchema = new Schema(
             type: String, unique: true
         },
         password: String,
-        cart: {
-            type: Schema.Types.ObjectId,
-            ref: 'Cart'
-        },
-        orders: [
-            {
-                type: Schema.Types.ObjectId
-            }
-        ]
+        // cart: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'Cart'
+        // },
+        // orders: [
+        //     {
+        //         type: Schema.Types.ObjectId
+        //     }
+        // ]
     }
 );
 

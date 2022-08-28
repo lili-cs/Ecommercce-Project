@@ -3,6 +3,13 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
     {
+        // id: {
+        //     type: String,
+        //     unique: true,
+        //     get: function() {
+        //         return this._id.toString();
+        //     }
+        // },
         name: {
             type: String, required: true
         },

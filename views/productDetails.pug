@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1 Product Details Page
+  hr
+  img(src='' alt='thumbnail')
+  h3 Name: #{product.name}, Stock: #{product.stock}; 
+  hr
+
+  h4 #{JSON.stringify(product)}
+
+  h4 Add To Cart
+  button(type='button' onclick='addToCart(' + JSON.stringify(product) + ')') Click to add to cart
+  input(id='amount' type='number', placeholder='Enter number of products')
+  hr
+
+  h4 Leave A Comment
+  textarea(name="", cols="30", rows="10") 
+
+      
+
+
+
+  script(src='../javascripts/productDetails.js')

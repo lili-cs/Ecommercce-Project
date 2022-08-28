@@ -6,11 +6,11 @@ const bodyParser = require('body-parser');
 const { loginController } = require('./controller/loginController');
 const { signupController } = require('./controller/signupController');
 const { productController } = require('./controller/productController');
-
+const { cartController } = require('./controller/cartController');
 
 // // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // app.use(logger('dev'));
 app.use(express.json());
@@ -22,10 +22,13 @@ app.use(express.static(publicFolder));
 app.use(signupController);
 app.use(loginController);
 app.use(productController);
+app.use(cartController);
 app.use(bodyParser.urlencoded({extended:true}));
 
+
 app.get('/', async (req, res) => {
-  res.sendFile('home.html', {root: publicFolder});
+  // res.sendFile('home.html', {root: publicFolder});
+  res.redirect('/products');
 });
 
 module.exports = app;

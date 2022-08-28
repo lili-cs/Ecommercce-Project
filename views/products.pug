@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 Display Products by Brands
+  
+  each product in data 
+    div(onclick=`displayProductDetails(${JSON.stringify(data)}, '${product.id}')`)
+      img(src='' alt='thumbnail')
+
+    h3=product.name 
+    hr
+    br
+    br
+
+
+  script(src='../javascripts/products.js')

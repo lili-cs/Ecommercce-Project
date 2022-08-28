@@ -23,9 +23,9 @@ const productOrderStatusSchema = new Schema(
 
 const orderSchema = new Schema(
     {
-        // user: {
-        //     type: Schema.Types.ObjectId
-        // },
+        user: {
+            type: Schema.Types.ObjectId
+        },
         createdTime: {
             type: Date, require: true
         },
@@ -47,5 +47,5 @@ const orderSchema = new Schema(
 
 
 const productOrderStatus = mongoose.model('productOrderStatus', productOrderStatusSchema);
-const Order = mongoose.model( 'Order', userSchema);
+const Order = mongoose.model( 'Order', orderSchema);
 module.exports = { Order, productOrderStatus };
