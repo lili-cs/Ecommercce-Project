@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 Orders
+  
+  each order in orders 
+    h6 #{order}
+    hr
+
+
+  script(src='../javascripts/orders.js')

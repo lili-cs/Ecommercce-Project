@@ -4,7 +4,7 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const  User  = require('../model/User');
 const Cart = require('../model/Cart');
-const Order = require('../model/Order');
+// const Order = require('../model/Order');
 
 router.get('/signup', async function(req, res) {
     res.render('signup');

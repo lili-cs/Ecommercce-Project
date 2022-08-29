@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1 My Cart
+  h5 User Name: #{userName}
+  hr
+  
+  table
+    thead
+      tr 
+        th Picture
+        th Product Name 
+        th Amount
+    tbody 
+      each item in products
+        tr 
+          td 
+            img(src='' alt='thumbnail')
+          td #{item.name}
+          td #{item.amount}
+  hr
+
+  h3 Check Out
+  form
+    input(id='name' type='text' name='name' placeholder='Name' value='')
+    input(id='email' type='text' name='email' placeholder='Email' value='')
+    input(id='phoneNumber' type='text' name='phone' placeholder='Phone Number' value='')
+    input(id='shippingAddress' type='text' name='shippingAddress' placeholder='Shipping Address' value='')
+    input(id='billingAddress' type='text' name='billingAddress' placeholder='Billing Address' value='')
+    br
+    p Payment Method
+    select(id='paymentMethod' name='paymentMethod' )
+      option(value='Credit Card') Credit Card
+      option(value='Credit Card') Paypal
+    br
+    br
+    br
+    input(type='button' value='Submit' onclick='addOrder()')
+
+
+    
+    
+
+  //- script(type='text/javascript').var products=products;
+  script(src='../javascripts/cart.js')

@@ -5,7 +5,8 @@ const subSchema = new Schema({
     product: {
         type: Schema.Types.ObjectId,
         // required: true,
-        unique: true
+        unique: true,
+        ref: 'Product'
     },
     amount: {
         type: Number,

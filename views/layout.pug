@@ -4,4 +4,14 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    div.nav
+        div(onclick='home()') Home 
+        div(onclick='cart()') Cart 
+        div(onclick='orders()') My Orders 
+        div(id='signup' onclick='signup()') Sign Up 
+        div(id='login' onclick='login()') Log In
+        div(id='logout' onclick='logout()') Log Out
     block content
+
+
+  script(src='../javascripts/layout.js')
