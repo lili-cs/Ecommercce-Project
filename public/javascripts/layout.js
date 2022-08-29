@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
         logout.style.display = 'none'; 
         allAccounts.style.display = 'none';
         pendingOrders.style.display = 'none';
+        cart.style.display = 'none';
+        myOrders.style.display = 'none';
     }
 
     if(userName === 'admin'){

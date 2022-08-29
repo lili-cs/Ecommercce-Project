@@ -1,10 +1,12 @@
 extends layout
 
 block content
-  h1 Orders
+  h1 Orders of User #{userName}
   
   each order in orders 
     h6 #{order}
+    button(type='button' onclick=`approveOrder(${JSON.stringify(order._id)})`) Approve Order
     hr
 
 
+  script(src='../javascripts/orders.js')

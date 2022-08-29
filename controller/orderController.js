@@ -9,25 +9,44 @@ const User = require('../model/User');
 const auth_jwt = require('../middleware/auth');
 const  Order  = require('../model/Order');
 
-router.get('/orders/:userName', auth_jwt, async(req, res, next) => {
+router.get('/orders/:userName', async(req, res, next) => {
     const userName = req.params.userName;
-    const jwtUserName = req.userName;
+    // const jwtUserName = req.userName;
 
-    if(userName !== 'admin' && jwtUserName !== userName){
-        return res.render('notauthPage');
-    }
+    // if(userName !== 'admin' && jwtUserName !== userName){
+    //     return res.render('notauthPage');
+    // }
 
     try{
         const results = await User.find({userName: userName});
         const userId = results[0]._id;
         const orders = await Order.find({user:userId});
-        res.render('orders', {orders:orders});
+        res.render('orders', {orders:orders, userName: userName});
     }
     catch(err){
         console.log(err);
     }
 
 })
+// router.get('/orders/:userName', auth_jwt, async(req, res, next) => {
+//     const userName = req.params.userName;
+//     const jwtUserName = req.userName;
+
+//     if(userName !== 'admin' && jwtUserName !== userName){
+//         return res.render('notauthPage');
+//     }
+
+//     try{
+//         const results = await User.find({userName: userName});
+//         const userId = results[0]._id;
+//         const orders = await Order.find({user:userId});
+//         res.render('orders', {orders:orders});
+//     }
+//     catch(err){
+//         console.log(err);
+//     }
+
+// })
 
 router.get('/pending-orders',  async(req, res, next) => {
     // const jwtUserName = req.userName;
@@ -83,8 +102,31 @@ router.post('/orders/add', auth_jwt,  async (req, res, next) => {
     catch(err){
         console.log(err);
     }
-
-
 });
+
+
+//only used to update order status for now
+router.put('/orders/:orderId', async (req, res) => {
+    const orderId = req.params.orderId;
+    const status = req.body.status;
+
+    try{
+        const order = await Order.findById(orderId);
+        order.status = status;
+        await order.save();
+        console.log('order updated successfully');
+        res.status(200).send(JSON.stringify({
+            message: 'update order successfully'
+        }));
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send(JSON.stringify({
+            message: 'update order failed'
+        }));
+    }
+
+
+})
 
 module.exports = { orderController: router};
