@@ -5,12 +5,17 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div.nav
+      div
         div(onclick='home()') Home 
-        div(onclick='cart()') Cart 
-        div(onclick='orders()') My Orders 
+        div(id='cart' onclick='cart()') Cart 
+        div(id='myOrders' onclick='orders()') My Orders 
+        div(id='pendingOrders' onclick='pendingOrders()') Pending Orders
+        div(id='allAccounts' onclick='allAccounts()') All User Accounts
         div(id='signup' onclick='signup()') Sign Up 
         div(id='login' onclick='login()') Log In
         div(id='logout' onclick='logout()') Log Out
+      div 
+        h5(id='userName')
     block content
 
 

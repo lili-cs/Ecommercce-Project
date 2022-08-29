@@ -7,8 +7,9 @@ const bodyParser = require('body-parser');
 const { loginController } = require('./controller/loginController');
 const { signupController } = require('./controller/signupController');
 const { productController } = require('./controller/productController');
-// const { cartController } = require('./controller/cartController');
-// const { orderController } = require('./controller/orderController');
+const { cartController } = require('./controller/cartController');
+const { orderController } = require('./controller/orderController');
+const { userController } = require('./controller/userController');
 
 app.options('*', cors());
 // // view engine setup
@@ -25,8 +26,9 @@ app.use(express.static(publicFolder));
 app.use(signupController);
 app.use(loginController);
 app.use(productController);
-// app.use(cartController);
-// app.use(orderController);
+app.use(cartController);
+app.use(orderController);
+app.use(userController);
 app.use(bodyParser.urlencoded({extended:true}));
 
 
@@ -34,5 +36,10 @@ app.get('/', async (req, res) => {
   // res.sendFile('home.html', {root: publicFolder});
   res.redirect('/products');
 });
+
+app.use((req, res, next) => {
+  res.status(404).render('404Page');
+});
+
 
 module.exports = app;

@@ -8,11 +8,13 @@ function addOrder(){
     const payment = paymentElement.options[paymentElement.selectedIndex].text;
 
     const jwtToken = localStorage.getItem('user');
+    const userName = localStorage.getItem('userName');
 
     fetch('http://localhost:3000/orders/add', 
     {
         method: 'POST',
         body: JSON.stringify({
+            userName: userName,
             recipient: recipient,
             email: email,
             phone: phone,

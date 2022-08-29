@@ -12,6 +12,15 @@ router.get('/signup', async function(req, res) {
 
 router.post('/signup', async function(req, res) {
     const {userName, password, email} = req.body;
+
+    const results = await User.findOne({userName:userName});
+    if(results){
+        return res.send(JSON.stringify({
+            message: 'user already exist',
+            redirect: '/signup'
+        }));
+    }
+
     const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT_ROUNDS));
     const newUser = new User(
         {
@@ -43,7 +52,7 @@ router.post('/signup', async function(req, res) {
     catch(err){
         console.log('create new user failed');
         res.status(500).send(JSON.stringify({
-            message: 'sign up failed due to server db error.',
+            message: 'sign up failed due db error',
             redirect: '/signup'
         }));
     }

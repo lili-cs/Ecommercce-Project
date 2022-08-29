@@ -1,7 +1,7 @@
-function signup(){
-    const userName = document.getElementById('userName').value;
-    const password = document.getElementById('password').value;
-    const email = document.getElementById('email').value;
+function signupSubmit(){
+    const userName = document.getElementById('userNameInput').value;
+    const password = document.getElementById('passwordInput').value;
+    const email = document.getElementById('emailInput').value;
 
     fetch('http://localhost:3000/signup',
         {
@@ -21,6 +21,7 @@ function signup(){
         .then(data => {
             console.log(data);
             window.location.href = `http://localhost:3000${data.redirect}`;
+            alert(data.message);
         })
         .catch(err => {
             console.log(err);

@@ -72,4 +72,4 @@ const orderSchema = new Schema(
 
 // const productOrderStatus = mongoose.model('productOrderStatus', productOrderStatusSchema);
 const Order = mongoose.model( 'Order', orderSchema);
-module.exports = { Order};
+module.exports = Order;

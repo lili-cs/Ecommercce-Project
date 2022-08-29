@@ -4,6 +4,7 @@ function addToCart(product){
         window.alert('product amount error');
     }
     const jwtToken = localStorage.getItem('user');
+    let resStatus = '';
 
     if(!jwtToken){
         window.open('http://localhost:3000/login');
@@ -23,16 +24,25 @@ function addToCart(product){
         })
         .then(res => {
             if(res.status === 200){
-                alert('add to cart successfully');
+                resStatus = 200;
+                // alert('add to cart successfully');
             }
             else if(res.status === 401){
-                alert('invalid token.plz re-login');
+                resStatus = 401;
+                // 
             }
             return res.json();
         })
         .then(data => {
             if(data.redirect){
                 window.location.href = `http://localhost:3000${data.redirect}`;
+            }
+
+            if(resStatus === 200){
+                alert('add to cart successfully');
+            }
+            else if(resStatus === 401){
+                alert('invalid token.plz re-login');
             }
 
             console.log(data);

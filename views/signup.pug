@@ -4,11 +4,10 @@ block content
   h1 Sign Up
   hr
   
-  input(id='userName' type='text', placeholder='Enter userName')
-  input(id='email' type='text', placeholder='Enter Email')
-  input(id='password' type='text', placeholder='Enter Password')
-  button(onclick='signup()') Click to Sign Up
-
+  input(id='userNameInput' type='text', placeholder='Enter userName')
+  input(id='emailInput' type='text', placeholder='Enter Email')
+  input(id='passwordInput' type='text', placeholder='Enter Password')
+  button(id='signupBtn' onclick='signupSubmit()') Click to Sign Up
 
 
   script(src='../javascripts/signup.js')

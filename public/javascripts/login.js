@@ -1,6 +1,6 @@
-function login(){
-    const userName = document.getElementById('userName').value;
-    const password = document.getElementById('password').value;
+function loginSubmit(){
+    const userName = document.getElementById('userNameInput').value;
+    const password = document.getElementById('passwordInput').value;
 
     fetch('http://localhost:3000/login',
         {
@@ -17,6 +17,7 @@ function login(){
             if(res.status === 200){
                 const token = res.headers.get('jwt');
                 localStorage.setItem('user', token);
+                localStorage.setItem('userName', userName);
             }
             return res.json();
         })
@@ -24,6 +25,7 @@ function login(){
             console.log(data);
             window.location.href = `http://localhost:3000${data.redirect}`;
             // window.open('http://localhost:3000' + data.redirect);
+            alert(data.message);
         })
         .catch(err => {
             console.log(err);

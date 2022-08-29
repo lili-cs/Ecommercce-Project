@@ -11,12 +11,13 @@ const auth_jwt = (req, res, next) => {
     }
     catch(err){
         console.log(err);
-        res.status(401).send(JSON.stringify(
-            {
-                message: 'user not authorized',
-                redirect: '/login'
-            }
-        ));
+        return res.render('404Page');
+        // res.status(401).send(JSON.stringify(
+        //     {
+        //         message: 'user not authorized',
+        //         redirect: '/login'
+        //     }
+        // ));
     }
 };
 

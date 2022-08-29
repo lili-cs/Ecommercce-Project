@@ -9,9 +9,17 @@ const User = require('../model/User');
 const auth_jwt = require('../middleware/auth');
 
 router.get('/cart/:userName', async function(req, res){
+
+    // const jwtUserName = req.userName;
     const userName = req.params.userName;
+    // if(userName !== 'admin' && jwtUserName !== userName){
+    //     return res.status(401).send(JSON.stringify({
+    //         message: 'not authorized'
+    //     }));
+    // }
 
     try{
+
         const user = await User.find({userName:userName});
         const userId = user[0]._id;
 
@@ -26,22 +34,24 @@ router.get('/cart/:userName', async function(req, res){
         }
         const cart = result[0];
         const products = cart.products;
-        res.render('cart', {products: products, userName: userName});
+        return res.render('cart', {products: products, userName: userName});
     }
     catch(err){
         console.log(err);
     }
 });
 
-router.get('/cart', auth_jwt, async function(req, res) {
-    const userName = req.userName;
-    res.send(JSON.stringify({
-        userName: userName
-    }));
-});
+// router.get('/cart', auth_jwt, async function(req, res) {
+//     const userName = req.userName;
+
+//     return res.send(JSON.stringify({
+//         userName: userName
+//     }));
+// });
 
 router.post('/cart/add', auth_jwt, async (req, res, next) => {
     const userName = req.userName;
+
     const { amount, product} = req.body;
 
     try{
@@ -59,15 +69,13 @@ router.post('/cart/add', auth_jwt, async (req, res, next) => {
         cart.products.push({product:product, amount:amount});
         await cart.save();
         console.log('Add to cart successfully');
-        res.status(200).send(JSON.stringify({
+        return res.status(200).send(JSON.stringify({
             message: 'Add to cart successfully'
         }));
     }
     catch(err){
         console.log(err);
     }
-
-
 });
 
 module.exports = { cartController: router};
