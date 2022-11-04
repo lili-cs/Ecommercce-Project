@@ -1,0 +1,12 @@
+apiVersion: backstage.io/vlalphal
+kind: Component
+metadata:
+  name: ecommerce-project
+  description: ecommerce-website including front-end and back-end
+  tags:
+    - go
+    - website
+spec:
+  type: service
+  lifecycle: production
+  owner: lili's team
